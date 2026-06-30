@@ -1,3 +1,31 @@
+/*
+==========================================================
+XFOIL Airfoil ML Pipeline
+
+Author: Ishaan Sharma
+
+Description:
+This program automates XFOIL to generate aerodynamic
+datasets for NACA 4-digit airfoils.
+
+Features:
+- Automatic parameter sweeps
+- Reynolds number sweep
+- Angle of attack sweep
+- Automatic polar generation
+- CSV dataset generation
+- Timeout protection
+- Failed case logging
+
+Output:
+dataset.csv
+failed_cases.csv
+polar_output/
+
+==========================================================
+*/
+
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
