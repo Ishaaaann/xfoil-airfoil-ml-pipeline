@@ -1,4 +1,4 @@
-# XFOIL Airfoil ML Pipeline
+# ML based Custom Airfoils
 
 An end-to-end machine learning pipeline for aerodynamic analysis and optimization of NACA 4-digit airfoils using **XFOIL**, **Python**, **C++**, and **Neural Networks**.
 
