@@ -3,6 +3,8 @@
 An end-to-end machine learning pipeline for aerodynamic analysis and optimization of NACA 4-digit airfoils using **XFOIL**, **Python**, **C++**, and **Neural Networks**.
 
 The objective is to replace expensive XFOIL evaluations with a fast surrogate model capable of predicting aerodynamic coefficients, which will later be integrated into a Genetic Algorithm for airfoil optimization.
+<img width="586" height="336" alt="image" src="https://github.com/user-attachments/assets/e574ce47-2762-4d53-a12b-0b28cc70e94a" />
+
 
 ---
 
