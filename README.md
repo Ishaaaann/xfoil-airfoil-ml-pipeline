@@ -54,8 +54,8 @@ xfoil-airfoil-ml-pipeline/
 
 │
 ├── datasets/
-│   ├── raw_dataset.csv
-│   └── cleaned_dataset.csv
+│   ├── dataset.csv
+│   └── Log_Failure.csv
 │
 ├── notebooks/
 │   ├── EDA.ipynb
@@ -63,7 +63,6 @@ xfoil-airfoil-ml-pipeline/
 │   ├── training.ipynb
 │   └── optimization.ipynb
 │
-├── polar_output/
 │
 ├── src/
 │
