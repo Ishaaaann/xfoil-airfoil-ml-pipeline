@@ -1,101 +1,74 @@
-
 # XFOIL Airfoil ML Pipeline
 
-An end-to-end pipeline for generating aerodynamic datasets using XFOIL and training machine learning surrogate models for custom airfoil optimization.
+An end-to-end machine learning pipeline for aerodynamic analysis and optimization of NACA 4-digit airfoils using **XFOIL**, **Python**, **C++**, and **Neural Networks**.
+
+The objective is to replace expensive XFOIL evaluations with a fast surrogate model capable of predicting aerodynamic coefficients, which will later be integrated into a Genetic Algorithm for airfoil optimization.
 
 ---
 
-## Overview
-
-This project automates the generation of aerodynamic datasets for NACA 4-digit airfoils using XFOIL. The generated dataset is intended for training machine learning models that can rapidly predict aerodynamic coefficients, enabling future optimization using Genetic Algorithms.
-
-Instead of running thousands of expensive XFOIL simulations during optimization, the trained neural network will act as a fast aerodynamic surrogate model.
-
----
-
-## Features
-
-- Automated XFOIL execution
-- Automatic generation of NACA 4-digit airfoils
-- Reynolds number parameter sweep
-- Angle of attack sweep
-- Automatic polar file generation
-- Automatic parsing of XFOIL output
-- Dataset generation in CSV format
-- Timeout protection for stalled simulations
-- Failed simulation logging
-- Organized output directory structure
-
----
-
-## Parameter Space
-
-| Parameter | Range |
-|-----------|-------|
-| Maximum Camber | 0% – 8% (step 1%) |
-| Camber Position | 10% – 80% chord (step 10%) |
-| Maximum Thickness | 8% – 24% (step 2%) |
-| Reynolds Number | 50,000 – 2,000,000 |
-| Angle of Attack | -5° to 15° (step 0.5°) |
-
----
-
-## Pipeline
+## Project Pipeline
 
 ```
-Generate XFOIL Script
-        │
-        ▼
-Run XFOIL
-        │
-        ▼
-Generate Polar File
-        │
-        ▼
-Parse Polar Data
-        │
-        ▼
-Append to dataset.csv
-        │
-        ▼
-Machine Learning Dataset
+NACA Airfoil Generation
+          │
+          ▼
+   XFOIL Automation (C++)
+          │
+          ▼
+ Dataset Generation
+          │
+          ▼
+Exploratory Data Analysis
+          │
+          ▼
+ Data Preprocessing
+          │
+          ▼
+ Neural Network Surrogate
+          │
+          ▼
+ Genetic Algorithm
+          │
+          ▼
+ Optimized Airfoils
 ```
 
 ---
 
-## Dataset Statistics
+# Current Progress
 
-- Total simulations attempted: **10,368**
-- Successful simulations: **10,201**
-- Failed simulations: **167**
-- Success rate: **98.4%**
-- Total aerodynamic samples: **370,585**
-
-The generated dataset contains:
-
-- Camber
-- Camber Position
-- Thickness
-- Reynolds Number
-- Angle of Attack
-- Lift Coefficient (CL)
-- Drag Coefficient (CD)
-- Pressure Drag (CDp)
-- Pitching Moment Coefficient (CM)
-- Transition Locations
+- ✅ XFOIL automation completed
+- ✅ Automatic dataset generation completed
+- ✅ Exploratory Data Analysis completed
+- ⬜ Data preprocessing
+- ⬜ Neural network training
+- ⬜ Hyperparameter optimization
+- ⬜ Genetic algorithm optimization
 
 ---
 
-## Repository Structure
+# Repository Structure
 
 ```
-.
-├── src/
-│   └── main.cpp
+xfoil-airfoil-ml-pipeline/
+
+│
 ├── datasets/
-│   ├── dataset.csv
-│   └── failed_cases.csv
-├── xfoil/
+│   ├── raw_dataset.csv
+│   └── cleaned_dataset.csv
+│
+├── notebooks/
+│   ├── EDA.ipynb
+│   ├── preprocessing.ipynb
+│   ├── training.ipynb
+│   └── optimization.ipynb
+│
+├── polar_output/
+│
+├── src/
+│
+├── images/
+│
 ├── README.md
 ├── LICENSE
 └── .gitignore
@@ -103,41 +76,129 @@ The generated dataset contains:
 
 ---
 
-## Future Work
+# Dataset
 
-- Data preprocessing and visualization
-- Neural network surrogate model
-- Hyperparameter tuning
-- Genetic Algorithm optimization
-- Support for CST and Selig airfoil parameterizations
-- Interactive airfoil design tool
+### Airfoil Parameters
+
+| Parameter | Range |
+|-----------|-------|
+| Camber | 0–8% |
+| Camber Position | 10–80% chord |
+| Thickness | 8–24% |
+| Reynolds Number | 50,000 – 2,000,000 |
+| Angle of Attack | −5° to 25° |
 
 ---
 
-## Technologies Used
+### Output Variables
+
+- Lift Coefficient (CL)
+- Drag Coefficient (CD)
+- Pressure Drag (CDp)
+- Pitching Moment (CM)
+- Upper Surface Transition Location
+- Lower Surface Transition Location
+
+---
+
+### Dataset Statistics
+
+| Metric | Value |
+|--------|-------|
+| Total Simulations | 15,552 |
+| Successful Simulations | 15,385 |
+| Final Dataset Size | 416,234 unique operating points |
+| Features | 11 |
+| Missing Values | 0 |
+| Duplicate Rows | 0 (after cleaning) |
+
+---
+
+# Exploratory Data Analysis
+
+The generated dataset was validated before model development through an extensive exploratory data analysis.
+
+The EDA includes:
+
+- Data quality assessment
+- Missing value analysis
+- Duplicate removal
+- Aerodynamic validation
+- Distribution analysis
+- Correlation analysis
+- Reynolds number effects
+- Stall behaviour verification
+- Outlier inspection
+
+Notebook:
+
+```
+notebooks/EDA.ipynb
+```
+
+---
+
+# Reynolds Number Effects
+
+One of the most important validations performed during the EDA was examining the effect of Reynolds number on the aerodynamic characteristics averaged across all generated airfoils.
+
+**Insert your Reynolds number figure here**
+
+```markdown
+<p align="center">
+  <img src="images/reynolds_effect.png" width="900">
+</p>
+```
+
+**Observed trends**
+
+- Higher Reynolds numbers produce higher lift coefficients.
+- Stall is delayed as Reynolds number increases.
+- Drag decreases significantly with increasing Reynolds number.
+- Post-stall behaviour is successfully captured in the dataset.
+- These trends closely match expected aerodynamic behaviour predicted by XFOIL.
+
+---
+
+# Technologies Used
 
 - C++
-- XFOIL
-- Windows API
-- CSV Data Processing
-
-Future additions:
-
 - Python
-- TensorFlow / PyTorch
-- Scikit-Learn
-- Genetic Algorithms
+- XFOIL 6.99
+- Pandas
+- NumPy
+- Matplotlib
+- Jupyter Notebook
+- Git
+- GitHub
 
 ---
 
-## Author
+# Future Work
+
+- Feature engineering
+- Data normalization
+- Neural network surrogate model
+- Hyperparameter tuning
+- Model validation
+- Genetic algorithm optimization
+- Airfoil shape optimization
+- Comparison against XFOIL predictions
+
+---
+
+# Motivation
+
+Traditional aerodynamic optimization requires thousands of expensive XFOIL evaluations.
+
+This project aims to develop a machine learning surrogate capable of predicting aerodynamic coefficients in milliseconds while maintaining high accuracy, enabling rapid design-space exploration and optimization.
+
+---
+
+# Author
 
 **Ishaan Sharma**
 
-Computer Engineering Undergraduate | Motorsport Aerodynamics | Machine Learning | CFD
+Computer Engineering Undergraduate
 
----
-
-## License
-
-This project is licensed under the MIT License.
+Motorsports Aerodynamics • Machine Learning • CFD • Formula Student
