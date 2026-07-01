@@ -142,13 +142,8 @@ notebooks/EDA.ipynb
 
 One of the most important validations performed during the EDA was examining the effect of Reynolds number on the aerodynamic characteristics averaged across all generated airfoils.
 
-**Insert your Reynolds number figure here**
+<img width="1174" height="417" alt="Screenshot 2026-07-01 150633" src="https://github.com/user-attachments/assets/56612d4e-429b-42e8-9939-8f4fb890868c" />
 
-```markdown
-<p align="center">
-  <img src="images/reynolds_effect.png" width="900">
-</p>
-```
 
 **Observed trends**
 
